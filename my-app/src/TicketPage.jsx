@@ -1,60 +1,87 @@
 import Ticket from "./components/Ticket";
-import TicketsObject from "./tickets.json";
+import Tickets_Json from "./tickets.json";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Pagination from "react-bootstrap/Pagination";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { useState } from "react";
+import Links from "./components/Links";
 
-const TicketPage = (props) => {
-  let { page } = props;
-  const [redirect, setRedirect] = useState(-1);
-  const startRedirect = page;
-  const Tickets = TicketsObject.tickets;
+const TicketPage = () => {
+  //get current pagination index from url params
+  const search = useLocation().search;
+  const params = new URLSearchParams(search);
+  const page = params.get("page") ? parseInt(params.get("page")) : 1;
+
+  //change pagination index state
+  const [redirect, setRedirect] = useState(page);
+
+  //get tickets from json file
+  const tickets_objects = Tickets_Json.tickets;
+  //tickets object array
   let tickets = [];
+  //pages object array
   let pages = [];
-  for (
-    let index = (page - 1) * 25;
-    index <= page * 25 && index < Tickets.length;
-    index++
-  ) {
-    tickets.push(
-      <Col
-        key={"ticket:" + index}
-        style={{ height: "100%" }}
-        sm={6}
-        className="p-3"
-      >
-        <Ticket ticket={Tickets[index]} />
-      </Col>
-    );
-  }
-  for (let index = 1; index <= Tickets.length / 25; index++) {
-    pages.push(
-      <Pagination.Item
-        key={index}
-        active={index === page}
-        onClick={() => {
-          console.log(index);
-          setRedirect(index);
-        }}
-      >
-        {index}
-      </Pagination.Item>
-    );
-  }
+
+  const pushPage = (page) => {
+    for (let index = 1; index <= tickets_objects.length / 25; index++) {
+      pages.push(
+        <Pagination.Item
+          key={index}
+          active={index === page}
+          onClick={() => {
+            setRedirect(index);
+          }}
+        >
+          {index}
+        </Pagination.Item>
+      );
+    }
+  };
+
+  const pushTickets = () => {
+    const minPage = (page - 1) * 25;
+    const maxPage = page * 25;
+    for (
+      let index = minPage;
+      index < maxPage && index < tickets_objects.length;
+      index++
+    ) {
+      tickets.push(
+        <Col
+          key={"ticket:" + index}
+          style={{ height: "100%" }}
+          sm={4}
+          className="p-3"
+        >
+          <Ticket ticket={tickets_objects[index]} galleryView />
+        </Col>
+      );
+    }
+  };
+
+  pushPage(page);
+  pushTickets();
 
   return (
-    <div>
-      {startRedirect === redirect ? <></> : <Navigate to={"/" + redirect} />}
-      <h1>Tickets</h1>
+    <>
+      {page === redirect ? (
+        <></>
+      ) : (
+        <Navigate to={Links.ticketPageQuery + redirect} />
+      )}
       <Row>
-        <Pagination>{pages}</Pagination>{" "}
+        <Col>
+          <h1>Tickets</h1>
+        </Col>
       </Row>
       <Row>
-        <Pagination>{tickets}</Pagination>
+        <Col>
+          <Pagination>{pages}</Pagination>{" "}
+        </Col>
       </Row>
-    </div>
+      <Row>{tickets}</Row>
+    </>
   );
 };
 

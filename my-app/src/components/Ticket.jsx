@@ -1,50 +1,91 @@
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Links from "./Links";
+import { Link } from "react-router-dom";
 const Ticket = (props) => {
-  const onDelete2 = (id) => {
-    console.log(id);
+  const ticketTitleLength = 30;
+  const ticketBodyLength = 100;
+  const { ticket, galleryView, size } = props;
+
+  const directionButton = (directionArrow, toId) => {
+    return (
+      <Col>
+        <Button
+          variant="primary"
+          as={Link}
+          to={Links.ticketQuery + toId}
+          onClick={() => console.log(toId)}
+        >
+          {directionArrow}
+        </Button>
+      </Col>
+    );
   };
-  const getDescription = (description) => {
-    if (description.length > 50) {
-      return description.substring(0, 50) + "...";
+
+  const backButton = (id) => {
+    if (galleryView || id === 1) return;
+    return directionButton("←", id - 1);
+  };
+  const forwardButton = (id) => {
+    if (galleryView || id === size) return;
+    return directionButton("→", id + 1);
+  };
+
+  const getTitle = (title) => {
+    if (!galleryView) return title;
+
+    if (title.length > ticketTitleLength) {
+      return title.substring(0, ticketTitleLength) + "...";
     }
-    return description;
+    return title;
   };
-  const getTitle = (description) => {
-    if (description.length > 25) {
-      return description.substring(0, 25) + "...";
+
+  const getDescription = (description) => {
+    if (!galleryView) return description;
+
+    if (description.length > ticketBodyLength) {
+      return description.substring(0, ticketBodyLength) + "...";
     }
     return description;
   };
 
-  const { ticket } = props;
   return (
-    <Card bg="dark" text="light" className="ticket">
+    <Card className="ticket">
       <Card.Header className="ticket__title">
-        <h2>{getTitle(ticket.subject)}</h2>
         <div className="ticket__id">
-          <p>{getTitle(ticket.requester_id)}</p>
+          <p>{ticket.requester_id}</p>
         </div>
       </Card.Header>
+      <Card.Title className="text-center px-2 pt-1 pb-0">
+        <h2>{getTitle(ticket.subject)}</h2>
+      </Card.Title>
       <Card.Body>
-        <div className="ticket__body">
+        <div className="ticket__body ">
           <p>{getDescription(ticket.description)}</p>
         </div>
       </Card.Body>
       <Card.Footer>
-        <ButtonGroup>
-          <Button
-            className="ticket__delete-btn"
-            variant="danger"
-            onClick={() => onDelete2(ticket.requester_id)}
-          >
-            X
-          </Button>{" "}
-          <Button variant="warning" onClick={() => {}}>
-            More
-          </Button>
-        </ButtonGroup>
+        <Row className="float-end">
+          {backButton(ticket.requester_id)}
+
+          <Col>
+            <Button
+              variant="primary"
+              onClick={() => {}}
+              as={Link}
+              to={
+                galleryView
+                  ? Links.ticketQuery + ticket.requester_id
+                  : Links.ticketPage
+              }
+            >
+              {galleryView ? "view" : "return"}
+            </Button>
+          </Col>
+          {forwardButton(ticket.requester_id)}
+        </Row>
       </Card.Footer>
     </Card>
   );
