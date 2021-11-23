@@ -1,6 +1,6 @@
 const Links = {
-  ticketPage: "/ticket_page",
-  ticketPageQuery: "/ticket_page?page=",
+  ticketPage: "/ticket_gallery",
+  ticketPageQuery: "/ticket_gallery?page=",
   ticket: "/ticket",
   ticketQuery: "/ticket?id=",
 };

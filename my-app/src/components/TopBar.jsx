@@ -3,9 +3,10 @@ import Container from "react-bootstrap/Container";
 
 const TopBar = () => {
   return (
-    <Navbar bg="primary" variant="light">
+    <Navbar variant="light" bg="primary">
       <Container>
         <Navbar.Brand>Zendesk Coding Challenge Ticket Viewer</Navbar.Brand>
+        {/* <Navbar.Brand></Navbar.Brand> Maybe add a settings option here*/}
       </Container>
     </Navbar>
   );

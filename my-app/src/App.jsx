@@ -1,6 +1,6 @@
 import "./App.css";
 import Container from "react-bootstrap/Container";
-import TicketPage from "./TicketPage";
+import TicketPage from "./TicketGallery";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Links from "./components/Links";
 import TopBar from "./components/TopBar";
@@ -10,27 +10,29 @@ import "bootswatch/dist/morph/bootstrap.min.css";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<TopBar />} />
-        <Route
-          path={Links.ticketPage}
-          element={
-            <Container className="pt-3">
-              <TicketPage />
-            </Container>
-          }
-        />
-        <Route
-          path={Links.ticket}
-          element={
-            <Container className="pt-3">
-              <TicketView />
-            </Container>
-          }
-        />
-      </Routes>
-    </Router>
+    <>
+      <TopBar />
+      <Router>
+        <Routes>
+          <Route
+            path={Links.ticketPage}
+            element={
+              <Container className="pt-3">
+                <TicketPage />
+              </Container>
+            }
+          />
+          <Route
+            path={Links.ticket}
+            element={
+              <Container className="pt-3">
+                <TicketView />
+              </Container>
+            }
+          />
+        </Routes>
+      </Router>
+    </>
   );
 }
 
