@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Links from "./components/Links";
 import TopBar from "./components/TopBar";
 import TicketView from "./TicketView";
+import Landing from "./Landing";
 import "bootswatch/dist/morph/bootstrap.min.css";
 //import "bootstrap/dist/js/bootstrap.bundle.min";
 
@@ -14,6 +15,9 @@ function App() {
       <TopBar />
       <Router>
         <Routes>
+          <Route path={Links.landing}
+            element={<Container className="pt-3"><Landing /></Container>}
+          />
           <Route
             path={Links.ticketPage}
             element={
