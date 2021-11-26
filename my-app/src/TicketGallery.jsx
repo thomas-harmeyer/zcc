@@ -1,5 +1,5 @@
 import Ticket from "./components/Ticket";
-import Tickets_Json from "./tickets.json";
+import Tickets_Json from "./ticketsRes.json";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Pagination from "react-bootstrap/Pagination";
@@ -17,7 +17,7 @@ const TicketPage = () => {
   const [redirect, setRedirect] = useState(page);
 
   //get tickets from json file
-  const tickets_objects = Tickets_Json.tickets;
+  const tickets_objects = Tickets_Json.requests;
   //tickets object array
   let tickets = [];
   //pages object array

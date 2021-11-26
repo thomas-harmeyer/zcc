@@ -55,7 +55,7 @@ const Ticket = (props) => {
     <Card className="ticket">
       <Card.Header className="ticket__title">
         <div className="ticket__id">
-          <p>{ticket.requester_id}</p>
+          <p>{ticket.id}</p>
         </div>
       </Card.Header>
       <Card.Title className="text-center px-2 pt-1 pb-0">
@@ -68,7 +68,7 @@ const Ticket = (props) => {
       </Card.Body>
       <Card.Footer>
         <Row className="float-end">
-          {backButton(ticket.requester_id)}
+          {backButton(ticket.id)}
 
           <Col>
             <Button
@@ -77,14 +77,14 @@ const Ticket = (props) => {
               as={Link}
               to={
                 galleryView
-                  ? Links.ticketQuery + ticket.requester_id
+                  ? Links.ticketQuery + ticket.id
                   : Links.ticketPage
               }
             >
               {galleryView ? "view" : "return"}
             </Button>
           </Col>
-          {forwardButton(ticket.requester_id)}
+          {forwardButton(ticket.id)}
         </Row>
       </Card.Footer>
     </Card>
