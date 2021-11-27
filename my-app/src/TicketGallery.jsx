@@ -7,7 +7,7 @@ import { Navigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import Links from "./components/Links";
 
-const TicketPage = () => {
+const TicketGallery = () => {
   //get current pagination index from url params
   const search = useLocation().search;
   const params = new URLSearchParams(search);
@@ -68,7 +68,7 @@ const TicketPage = () => {
       {page === redirect ? (
         <></>
       ) : (
-        <Navigate to={Links.ticketPageQuery + redirect} />
+        <Navigate to={Links.ticketGalleryQuery + redirect} />
       )}
       <Row>
         <Col>
@@ -85,4 +85,4 @@ const TicketPage = () => {
   );
 };
 
-export default TicketPage;
+export default TicketGallery;

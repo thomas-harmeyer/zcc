@@ -73,12 +73,12 @@ const Ticket = (props) => {
           <Col>
             <Button
               variant="primary"
-              onClick={() => {}}
+              onClick={() => { }}
               as={Link}
               to={
                 galleryView
                   ? Links.ticketQuery + ticket.id
-                  : Links.ticketPage
+                  : Links.ticketGallery
               }
             >
               {galleryView ? "view" : "return"}

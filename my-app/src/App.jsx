@@ -1,6 +1,6 @@
 import "./App.css";
 import Container from "react-bootstrap/Container";
-import TicketPage from "./TicketGallery";
+import TicketGallery from "./TicketGallery";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Links from "./components/Links";
 import TopBar from "./components/TopBar";
@@ -19,10 +19,10 @@ function App() {
             element={<Container className="pt-3"><Landing /></Container>}
           />
           <Route
-            path={Links.ticketPage}
+            path={Links.ticketGallery}
             element={
               <Container className="pt-3">
-                <TicketPage />
+                <TicketGallery />
               </Container>
             }
           />

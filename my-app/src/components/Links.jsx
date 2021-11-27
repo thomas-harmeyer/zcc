@@ -1,7 +1,7 @@
 const Links = {
   landing:"/",
-  ticketPage: "/ticket_gallery",
-  ticketPageQuery: "/ticket_gallery?page=",
+  ticketGallery: "/ticket_gallery",
+  ticketGalleryQuery: "/ticket_gallery?page=",
   ticket: "/ticket",
   ticketQuery: "/ticket?id=",
 };
