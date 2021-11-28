@@ -1,8 +1,8 @@
 import { useLocation } from "react-router-dom";
 // import Row from "react-bootstrap/Row";
 // import Col from "react-bootstrap/Col";
-import Ticket from "./components/Ticket";
-import Tickets_Json from "./ticketsRes.json";
+import Ticket from "../components/Ticket";
+import Tickets_Json from "../ticketsRes.json";
 
 const TicketView = () => {
   //get current pagination index from url params

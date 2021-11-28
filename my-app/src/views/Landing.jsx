@@ -5,7 +5,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
 import Cookies from 'universal-cookie';
-import Links from "./components/Links";
+import Links from "../components/Links";
 import { Navigate } from "react-router-dom";
 
 const Landing = () => {

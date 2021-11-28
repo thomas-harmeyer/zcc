@@ -1,12 +1,12 @@
-import Ticket from "./components/Ticket";
-import Tickets_Json from "./ticketsRes.json";
-import Row from "react-bootstrap/Row";
+import { useState } from "react";
 import Col from "react-bootstrap/Col";
 import Pagination from "react-bootstrap/Pagination";
+import Row from "react-bootstrap/Row";
 import { Navigate, useLocation } from "react-router-dom";
-import { useState } from "react";
-import Links from "./components/Links";
-
+import Links from "../components/Links";
+import Ticket from "../components/Ticket";
+import Tickets_Json from "../ticketsRes.json";
+import Problem from "./Problem";
 const TicketGallery = () => {
   //get current pagination index from url params
   const search = useLocation().search;
@@ -65,6 +65,7 @@ const TicketGallery = () => {
 
   return (
     <>
+      <Problem />
       {page === redirect ? (
         <></>
       ) : (

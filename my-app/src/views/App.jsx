@@ -1,9 +1,9 @@
-import "./App.css";
+import "../css/App.css";
 import Container from "react-bootstrap/Container";
 import TicketGallery from "./TicketGallery";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Links from "./components/Links";
-import TopBar from "./components/TopBar";
+import Links from "../components/Links";
+import TopBar from "../components/TopBar";
 import TicketView from "./TicketView";
 import Landing from "./Landing";
 import "bootswatch/dist/morph/bootstrap.min.css";
