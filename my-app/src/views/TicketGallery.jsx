@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import { Navigate, useLocation } from "react-router-dom";
 import Links from "../components/Links";
 import Ticket from "../components/Ticket";
-import Tickets_Json from "../ticketsRes.json";
+
 import Problem from "./Problem";
 const TicketGallery = () => {
   //get current pagination index from url params
@@ -16,6 +16,7 @@ const TicketGallery = () => {
   //change pagination index state
   const [redirect, setRedirect] = useState(page);
 
+  const Tickets_Json = JSON.parse(localStorage.getItem("tickets"));
   //get tickets from json file
   const tickets_objects = Tickets_Json.requests;
   //tickets object array
