@@ -65,7 +65,11 @@ const TicketGallery = () => {
 
   return (
     <>
-      <Problem />
+      <Row>
+        <Col sm="auto">
+          <Problem />
+        </Col>
+      </Row>
       {page === redirect ? (
         <></>
       ) : (

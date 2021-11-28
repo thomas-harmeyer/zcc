@@ -3,10 +3,10 @@ import Card from "react-bootstrap/Card";
 const Problem = () => {
     return (
         <>
-            <Card bg="warning" border="light" text="light" >
+            <Card bg="warning" border="dark" text="light" >
                 <Card.Body>
                     <Card.Title>
-                        Sorry, there was a problem encountered when we tried connecting to the server.
+                        Sorry, there was a problem connecting to the server. Check your credentials and network connection, and try again.
                     </Card.Title>
                 </Card.Body>
             </Card>
