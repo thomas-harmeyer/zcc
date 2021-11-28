@@ -1,15 +1,17 @@
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import FormControl from "react-bootstrap//FormControl";
-import InputGroup from "react-bootstrap/InputGroup";
-import Button from "react-bootstrap/Button";
+import axios from "axios";
 import { useState } from "react";
+import FormControl from "react-bootstrap//FormControl";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import InputGroup from "react-bootstrap/InputGroup";
+import Row from "react-bootstrap/Row";
+import { Navigate, useLocation } from "react-router-dom";
 import Cookies from "universal-cookie";
 import Links from "../components/Links";
-import { Navigate } from "react-router-dom";
-import axios from "axios";
+import Problem from "./Problem";
 
 const Landing = () => {
+  //cookies
   const cookies = new Cookies();
   const [redirectToTicketGallery, setRedirectToTicketGallery] = useState(false);
   const [username, setUsername] = useState(
@@ -21,6 +23,11 @@ const Landing = () => {
   const [subdomain, setSubdomain] = useState(
     cookies.get("subdomain") ? cookies.get("subdomain") : ""
   );
+
+  //url
+  const search = useLocation().search;
+  const params = new URLSearchParams(search);
+  const isError = params.get("error");
 
   //put in stuff to store input vals
   const submit = async () => {
@@ -56,6 +63,13 @@ const Landing = () => {
 
   return (
     <div className="center-content-vertically">
+      {isError && (
+        <Row>
+          <Col sm="auto">
+            <Problem />
+          </Col>
+        </Row>
+      )}
       <Row className="text-center">
         <h1>Zendesk Coding Challenge</h1>
       </Row>
@@ -100,14 +114,6 @@ const Landing = () => {
         <Col sm="auto">
           <Button onClick={submit}>Submit</Button>
         </Col>
-      </Row>
-      <Row>{username + " " + password + " " + subdomain}</Row>
-      <Row>
-        {cookies.get("username") +
-          " " +
-          cookies.get("password") +
-          " " +
-          cookies.get("subdomain")}
       </Row>
       {redirectToTicketGallery ? <Navigate to={Links.ticketGallery} /> : ""}
     </div>
