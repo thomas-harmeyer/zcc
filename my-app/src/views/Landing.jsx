@@ -4,7 +4,6 @@ import FormControl from "react-bootstrap//FormControl";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Col from "react-bootstrap/Col";
-import { alignPropType } from "react-bootstrap/esm/types";
 import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
 import ToggleButton from "react-bootstrap/ToggleButton";
