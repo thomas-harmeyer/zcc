@@ -10,8 +10,9 @@ This was a very fun and educational Challenge, much different that most of the c
 1. Clone git repo:
 
    - `git clone https://github.com/thomas-harmeyer/zcc.git`
+   - `cd zcc`
 
-2. Open 2 terminals:
+2. Open 2 terminals both at `/zcc`:
 3. On terminal 1:
 
 - ```
