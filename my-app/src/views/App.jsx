@@ -12,11 +12,16 @@ import "bootswatch/dist/morph/bootstrap.min.css";
 function App() {
   return (
     <>
-      <TopBar />
       <Router>
+        <TopBar />
         <Routes>
-          <Route path={Links.landing}
-            element={<Container className="pt-3"><Landing /></Container>}
+          <Route
+            path={Links.landing}
+            element={
+              <Container className="pt-3">
+                <Landing />
+              </Container>
+            }
           />
           <Route
             path={Links.ticketGallery}
