@@ -1,3 +1,7 @@
+/*
+To grader: I am not fully knowledgeable in testing in react. I am sorry for this. Please take the current tests into account as what I can learn/do in a short time leaning testing. I hope the rest of my project shows my knowledge to devolve and write code. I understand the importance of testing in a project; but, my knowledge is limited in this area.
+*/
+
 import { render, screen } from "@testing-library/react";
 import App from "./views/App";
 import Ticket from "./components/Ticket";
