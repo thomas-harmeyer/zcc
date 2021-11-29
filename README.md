@@ -17,6 +17,7 @@ This was a very fun and educational Challenge, much different that most of the c
 
 - ```
   cd my-app
+  npm i
   npm start
   ```
 
@@ -24,6 +25,7 @@ This was a very fun and educational Challenge, much different that most of the c
 
 - ```
   cd server
+  npm i
   npm start
   ```
 
