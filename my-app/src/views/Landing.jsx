@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FormControl from "react-bootstrap//FormControl";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
@@ -20,6 +20,10 @@ const Landing = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [subdomain, setSubdomain] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => {
+    setIsLoading(false);
+  }, []);
 
   //radios
   const [radioValue, setRadioValue] = useState("basicAuth");
@@ -37,6 +41,7 @@ const Landing = () => {
 
   //put in stuff to store input vals
   const submit = async () => {
+    setIsLoading(true);
     const type = radioValue;
     cookies.set("username", username);
     cookies.set("password", password);
@@ -63,20 +68,36 @@ const Landing = () => {
     axios(config)
       .then(function (response) {
         console.log(response.data);
+        setIsLoading(false);
         localStorage.setItem("tickets", JSON.stringify(response.data));
         setRedirectToTicketGallery(true);
       })
       .catch(function (error) {
+        setIsLoading(false);
         console.log(error);
       });
   };
+  const renderSpinner = () => {
+    return (
+      <Row className=" justify-content-center">
+        <Col xs="auto">Loading Please Wait...</Col>
+        <Col sm="auto" className="spinner-border">
+          <span></span>
+        </Col>
+      </Row>
+    );
+  };
+
+  if (isLoading) {
+    return renderSpinner();
+  }
   const renderBasicAuth = () => {
     return (
       <>
         <Row className="mb-4 justify-content-center">
           <Col sm="auto">
             <InputGroup>
-              <InputGroup.Text className="bg-secondary">Email</InputGroup.Text>
+              <InputGroup.Text className="bg-secondary ">Email</InputGroup.Text>
               <FormControl
                 type="email"
                 placeholder="example@gmail.com"

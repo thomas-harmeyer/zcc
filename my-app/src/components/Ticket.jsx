@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const Ticket = (props) => {
   const ticketTitleLength = 30;
   const ticketBodyLength = 100;
-  const { ticket, galleryView, size } = props;
+  const { ticket, galleryView, size, id } = props;
 
   const directionButton = (directionArrow, toId) => {
     return (
@@ -24,12 +24,12 @@ const Ticket = (props) => {
     );
   };
 
-  const backButton = (id) => {
-    if (galleryView || id === 1) return;
+  const backButton = () => {
+    if (galleryView || id === 0) return;
     return directionButton("←", id - 1);
   };
-  const forwardButton = (id) => {
-    if (galleryView || id === size) return;
+  const forwardButton = () => {
+    if (galleryView || id === size - 1) return;
     return directionButton("→", id + 1);
   };
 
@@ -68,12 +68,12 @@ const Ticket = (props) => {
       </Card.Body>
       <Card.Footer>
         <Row className="float-end">
-          {backButton(ticket.id)}
+          {backButton()}
 
           <Col>
             <Button
               variant="primary"
-              onClick={() => { }}
+              onClick={() => {}}
               as={Link}
               to={
                 galleryView
@@ -84,7 +84,7 @@ const Ticket = (props) => {
               {galleryView ? "view" : "return"}
             </Button>
           </Col>
-          {forwardButton(ticket.id)}
+          {forwardButton()}
         </Row>
       </Card.Footer>
     </Card>
